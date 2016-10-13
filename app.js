@@ -3,6 +3,8 @@
 
     var APP_TITLE = 'Pokestop Reminder';
 
+    var audio = new Audio('notification.mp3');
+
     // Let's check if the browser supports notifications
     if (!('Notification' in window)) {
         console.log('This browser does not support notifications.');
@@ -20,7 +22,8 @@
     function createNotification() {
         if (Notification.permission === 'granted') {
             var notification = new Notification(APP_TITLE, {
-                body: 'Time to spin!'
+                body: 'Time to spin!',
+                icon: 'Pokeball.png'
             });
 
             setTimeout(notification.close.bind(notification), 3000);
@@ -28,6 +31,8 @@
             if ('vibrate' in window.navigator) {
                 window.navigator.vibrate(500);
             }
+
+            audio.play();
         }
     }
 
