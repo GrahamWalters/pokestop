@@ -188,17 +188,24 @@
         var h = date.getHours();
         var m = date.getMinutes();
         var s = date.getSeconds();
+
+        // Pad the time
+        m = (m < 10 ? '0'+m : m);
+        s = (s < 10 ? '0'+s : s);
         timeTxt.innerHTML = h+':'+m+':'+s;
     }
 
 
     var seconds = 0;
+    var start = new Date();
     var w = new Worker('worker.js');
     w.addEventListener('message', function(e) {
-        seconds ++;
+        var now = new Date();
+
+        seconds = (now - start)/1000;
 
         if (seconds > 60*5) {
-            seconds = 1;
+            start.setMinutes(start.getMinutes() + 5);
             createNotification();
         }
 
@@ -211,7 +218,7 @@
 
     syncBtn.addEventListener('click', function() {
         w.postMessage('start');
-        seconds = 1;
+        start = new Date();
         setTime();
     });
 
