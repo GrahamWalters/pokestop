@@ -9,134 +9,144 @@
     <title>Pokestop Reminder</title>
 
     <style>
-        .container {
-            width: 440px;
-            margin: 30px auto;
-        }
+      .container {
+        width: 440px;
+        margin: 30px auto;
+      }
 
-        #canvas {
-            width: 400px;
-            height: 400px;
+      #canvas {
+        width: 400px;
+        height: 400px;
 
-            margin: 0 auto;
-            display: block;
-        }
-
-
-        /* General button style (reset) */
-        .btn {
-            border: none;
-            font-family: inherit;
-            font-size: inherit;
-            color: inherit;
-            background: none;
-            cursor: pointer;
-            padding: 25px 80px;
-            display: inline-block;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 700;
-            outline: none;
-            position: relative;
-            -webkit-transition: all 0.3s;
-            -moz-transition: all 0.3s;
-            transition: all 0.3s;
-        }
-
-        .btn:after {
-            content: '';
-            position: absolute;
-            z-index: -1;
-            -webkit-transition: all 0.3s;
-            -moz-transition: all 0.3s;
-            transition: all 0.3s;
-        }
+        margin: 0 auto;
+        display: block;
+      }
 
 
-        .btn-diagonal:after {
-            width: 100%;
-            height: 0;
-            top: 50%;
-            left: 50%;
-            background: #fff;
-            opacity: 0;
-            -webkit-transform: translateX(-50%) translateY(-50%) rotate(45deg);
-            -moz-transform: translateX(-50%) translateY(-50%) rotate(45deg);
-            -ms-transform: translateX(-50%) translateY(-50%) rotate(45deg);
-            transform: translateX(-50%) translateY(-50%) rotate(45deg);
-        }
+      /* General button style (reset) */
+      .btn {
+        border: none;
+        font-family: inherit;
+        font-size: inherit;
+        color: inherit;
+        background: none;
+        cursor: pointer;
+        padding: 25px 80px;
+        display: inline-block;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 700;
+        outline: none;
+        position: relative;
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        transition: all 0.3s;
+      }
 
-        .btn-diagonal:hover:after {
-            height: 260%;
-            opacity: 1;
-        }
-
-        .btn-diagonal:active:after {
-            height: 400%;
-            opacity: 1;
-        }
-
-
-        /* Button stop */
-        .btn-stop {
-            overflow: hidden;
-            border: 3px solid #fff;
-            color: #fff;
-        }
-        .btn-stop:before {
-            content: '';
-            position: absolute;
-            z-index: -2;
-            background: #f06060;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-        }
+      .btn:after {
+        content: '';
+        position: absolute;
+        z-index: -1;
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        transition: all 0.3s;
+      }
 
 
-        .btn-stop:hover,
-        .btn-stop:active {
-            color: #f06060;
-        }
+      .btn-diagonal:after {
+        width: 100%;
+        height: 0;
+        top: 50%;
+        left: 50%;
+        background: #fff;
+        opacity: 0;
+        -webkit-transform: translateX(-50%) translateY(-50%) rotate(45deg);
+        -moz-transform: translateX(-50%) translateY(-50%) rotate(45deg);
+        -ms-transform: translateX(-50%) translateY(-50%) rotate(45deg);
+        transform: translateX(-50%) translateY(-50%) rotate(45deg);
+      }
+
+      .btn-diagonal:hover:after {
+        height: 260%;
+        opacity: 1;
+      }
+
+      .btn-diagonal:active:after {
+        height: 400%;
+        opacity: 1;
+      }
 
 
-        /* Button sync */
-        .btn-sync {
-            overflow: hidden;
-            border: 3px solid #fff;
-            color: #fff;
-        }
-        .btn-sync:before {
-            content: '';
-            position: absolute;
-            z-index: -2;
-            background: #0e83cd;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-        }
+      /* Button stop */
+      .btn-stop {
+        overflow: hidden;
+        border: 3px solid #fff;
+        color: #fff;
+      }
+      .btn-stop:before {
+        content: '';
+        position: absolute;
+        z-index: -2;
+        background: #f06060;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
 
 
-        .btn-sync:hover,
-        .btn-sync:active {
-            color: #0e83cd;
-        }
+      .btn-stop:hover,
+      .btn-stop:active {
+        color: #f06060;
+      }
+
+
+      /* Button sync */
+      .btn-sync {
+        overflow: hidden;
+        border: 3px solid #fff;
+        color: #fff;
+      }
+      .btn-sync:before {
+        content: '';
+        position: absolute;
+        z-index: -2;
+        background: #0e83cd;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+
+
+      .btn-sync:hover,
+      .btn-sync:active {
+        color: #0e83cd;
+      }
     </style>
-  </head>
 
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-41709707-7', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+  </head>
   <body>
 
     <div class="container">
-        <canvas id="canvas" width="400" height="400"></canvas>
+      <canvas id="canvas" width="400" height="400"></canvas>
 
-        <strong>Started at: </strong><span id="time"></span>
+      <strong>Started at: </strong><span id="time"></span>
 
-        <hr>
+      <hr>
 
-        <button id="sync" class="btn btn-diagonal btn-sync">Sync</button>
-        <button id="stop" class="btn btn-diagonal btn-stop">Stop</button>
+      <button id="sync" class="btn btn-diagonal btn-sync">Sync</button>
+      <button id="stop" class="btn btn-diagonal btn-stop">Stop</button>
     </div>
 
 
